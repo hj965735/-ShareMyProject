@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coisas Divertidas Aleatórias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .content-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.3em;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-wrap: break-word;
+        }
+
+        .emoji {
+            font-size: 3em;
+            margin: 15px 0;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .stats {
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Coisas Divertidas Aleatórias 🎉</h1>
+        
+        <div class="emoji" id="emoji">🎲</div>
+        
+        <div class="content-box" id="content">
+            Clique no botão para ver algo divertido!
+        </div>
+        
+        <button onclick="mostrarCoisa()">Mostrar Algo Divertido</button>
+        <button onclick="mostrarTudo()">Mostrar Tudo de Uma Vez</button>
+        
+        <div class="stats" id="stats"></div>
+    </div>
+
+    <script>
+        const coisasDivertidas = [
+            { emoji: '😂', texto: 'Por que o livro de matemática se suicidou? Porque tinha muitos problemas!' },
+            { emoji: '🦆', texto: 'Um pato entra em uma farmácia e pergunta: Tem remédio para pato? O farmacêutico diz: Não. No dia seguinte o pato volta e pergunta a mesma coisa. Isso se repete por uma semana. Na oitava vez, o farmacêutico pergunta: Por que você quer remédio para pato? O pato responde: Porque matei a mulher dele e ele quer se vingar!' },
+            { emoji: '🍕', texto: 'A pizza é redonda, a caixa é quadrada... por que a fatia é um triângulo? Resposta: Para nos deixar confusos!' },
+            { emoji: '🚀', texto: 'Se você fosse um foguete, você já teria decolado com esse bom humor!' },
+            { emoji: '🎸', texto: 'Qual é a música favorita do psicólogo? Nada a declarar!' },
+            { emoji: '🧲', texto: 'Dois ímãs estão conversando... Não, brincadeira, eles não conseguem conversar porque se atraem muito!' },
+            { emoji: '🌮', texto: 'Por que o taco nunca ganha ao pôquer? Porque sempre mostra suas recheadas!' },
+            { emoji: '⚡', texto: 'Qual é o trabalho do relâmpago? Impacto!' },
+            { emoji: '🐢', texto: 'Uma tartaruga é lenta, mas tem tempo de sobra para pensar sobre a vida!' },
+            { emoji: '🎪', texto: 'O circo saiu da cidade... a diversão também... por isso estamos aqui!' },
+            { emoji: '🦄', texto: 'Unicórnios são reais... eles vivem na internet!' },
+            { emoji: '🍰', texto: 'Qual é o bolo favorito de um filósofo? Aquele que faz você pensar em quantas camadas a vida tem!' },
+            { emoji: '🎮', texto: 'A vida é como um videogame: você tem vidas extras? Não? Então não erre!' },
+            { emoji: '🌈', texto: 'Pot of gold no final do arco-íris? Nope, só mais arco-íris!' },
+            { emoji: '🎭', texto: 'A vida é um palco e você é o astro! Aproveite a cena!' }
+        ];
+
+        let contador = 0;
+
+        function getRandomItem() {
+            return coisasDivertidas[Math.floor(Math.random() * coisasDivertidas.length)];
+        }
+
+        function mostrarCoisa() {
+            const item = getRandomItem();
+            document.getElementById('emoji').textContent = item.emoji;
+            document.getElementById('content').textContent = item.texto;
+            contador++;
+            atualizarStats();
+        }
+
+        function mostrarTudo() {
+            let html = '<div style="text-align: left;">';
+            coisasDivertidas.forEach((item, index) => {
+                html += `<p style="margin: 10px 0;"><strong>${item.emoji} ${index + 1}.</strong> ${item.texto}</p>`;
+            });
+            html += '</div>';
+            document.getElementById('content').innerHTML = html;
+            contador += coisasDivertidas.length;
+            atualizarStats();
+        }
+
+        function atualizarStats() {
+            document.getElementById('stats').textContent = `Você já viu ${contador} coisa(s) divertida(s)! 🎯`;
+        }
+
+        // Mostrar algo divertido ao carregar
+        window.addEventListener('load', mostrarCoisa);
+    </script>
+</body>
+</html>
